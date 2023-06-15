@@ -12,13 +12,9 @@
 
 #include "Contact.hpp"
 
-Contact::Contact(void)
-{
-}
+Contact::Contact(void) {}
 
-Contact::~Contact(void)
-{
-}
+Contact::~Contact(void) {}
 
 std::string		Contact::GetFirstName(void)
 {
@@ -73,28 +69,4 @@ void			Contact::SetPhoneNumber(std::string PhoneNumber)
 void			Contact::SetDarkestSecret(std::string DarkestSecret)
 {
 	this->DarkestSecret = DarkestSecret;
-}
-
-std::string		Contact::XLgoin(std::string FirstName, std::string LastName)
-{
-	int 		i;
-	int 		j;
-	std::string XLogin;
-
-	i = 0;
-	j = 0;
-	XLogin += FirstName[0];
-    while (LastName[j] && i < 7)
-    {
-        XLogin += LastName[j];
-        i++;
-        j++;
-    }
-	i = 0;
-	while (i < (int)XLogin.length())
-	{
-		XLogin[i] = std::tolower(XLogin[i]);
-		i++;
-	}
-	return (XLogin);
 }

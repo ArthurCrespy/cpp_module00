@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   Utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrespy <acrespy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,36 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
 # include "Main.hpp"
-# include "Utils.hpp"
 
-class Contact
+class Utils
 {
-	private:
-			std::string		FirstName;
-			std::string		LastName;
-			std::string		Nickname;
-			std::string		PhoneNumber;
-			std::string		DarkestSecret;
-
 	public:
-			Contact();
-			~Contact();
-
-			std::string		GetFirstName();
-			std::string		GetLastName();
-			std::string		GetFullName();
-			std::string		GetNickname();
-			std::string		GetPhoneNumber();
-			std::string		GetDarkestSecret();
-			void			SetFirstName(std::string FirstName);
-			void			SetLastName(std::string LastName);
-			void			SetNickname(std::string Nickname);
-			void			SetPhoneNumber(std::string PhoneNumber);
-			void			SetDarkestSecret(std::string DarkestSecret);
+		static std::string GetInfo(std::string info);
+		static void        PrintInfo(int info);
+		static std::string TruncateString(const std::string& str, int maxLength);
+		static int         AreIdentical(const std::string str1, const std::string str2);
+		static std::string XLgoin(std::string FirstName, std::string LastName);
 };
 
 #endif

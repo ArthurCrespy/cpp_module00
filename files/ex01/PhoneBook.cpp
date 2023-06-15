@@ -18,48 +18,52 @@ PhoneBook::PhoneBook(void)
 	this->index = 0;
 }
 
-PhoneBook::~PhoneBook(void)
+PhoneBook::~PhoneBook(void) {}
+
+
+void        PrintInfo(int info)
 {
+    std::cout << "           |" << std::setw(10) << info << "|";
+    std::cout << std::setw(10) << std::right << Utils::TruncateString(contact[info].GetFirstName(), 9) << "|";
+    std::cout << std::setw(10) << std::right << Utils::TruncateString(contact[info].GetLastName(), 9) << "|";
+    std::cout << std::setw(10) << std::right << Utils::TruncateString(contact[info].GetNickname(), 9) << "|" << std::endl;
 }
 
 void		PhoneBook::AddContact()
 {
+	int             replace;
 	std::string		str;
 
+	replace = 0;
 	if (this->index == 8)
 	{
 		std::cout << "phonebook> Waring: phonebook is full !" << std::endl;
-		std::cout << "phonebook> Overwrite: " << PhoneBook::contact[0].GetFullName() << " ? [Y/N]" << std::endl;
+		std::cout << "phonebook> Overwrite: " << contact[0].GetFullName() << " ? [Y/N] ";
 		std::getline(std::cin, str);
-		if (str == "Y")
-			this->index = 0;
+		if (str == "Y" || str == "y")
+		{
+			index = 0;
+			replace = 1;
+		}
 		else
 			return ;
 	}
 
-	PhoneBook::contact[this->index].SetFirstName(this->GetInfo("First name"));
-	PhoneBook::contact[this->index].SetLastName(this->GetInfo("Last name"));
-	std::cout << "phonebook> Use " << PhoneBook::contact[this->index].XLgoin(PhoneBook::contact[this->index].GetFirstName(),
-																			 PhoneBook::contact[this->index].GetLastName()) << " for nickname ? [Y/N] ";
+	std::cout << "phonebook> Adding new contact:" << std::endl;
+	contact[index].SetFirstName(Utils::GetInfo("First name"));
+	contact[index].SetLastName(Utils::GetInfo("Last name"));
+	std::cout << "           Use " << XLgoin(contact[index].GetFirstName(), contact[index].GetLastName()) << " for nickname ? [Y/N] ";
 	std::getline(std::cin, str);
-	if (str == "Y")
-		PhoneBook::contact[this->index].SetNickname(PhoneBook::contact[this->index].GetFirstName());
+	if (str == "Y" || str == "y")
+		contact[index].SetNickname(Utils::XLgoin(contact[index].GetFirstName(), contact[index].GetLastName()));
 	else
-		PhoneBook::contact[this->index].SetNickname(this->GetInfo("Nickname"));
-	PhoneBook::contact[this->index].SetPhoneNumber(this->GetInfo("Phone number"));
-	PhoneBook::contact[this->index].SetDarkestSecret(this->GetInfo("Darkest secret"));
-	this->index++;
-}
-
-void PhoneBook::PrintInfo(int info)
-{
-	static int i = 0;
-
-	std::cout << "|     " << i << "    |";
-	std::cout << "|" << contact[info].GetFirstName();
-	std::cout << "|" << contact[info].GetLastName();
-	std::cout << "|" << contact[info].GetNickname() << std::endl;
-
+		contact[index].SetNickname(Utils::GetInfo("Nickname"));
+	contact[index].SetPhoneNumber(Utils::GetInfo("Phone number"));
+	contact[index].SetDarkestSecret(Utils::GetInfo("Darkest secret"));
+	if (replace == 1)
+		this->index = 8;
+	else
+		this->index++;
 }
 
 void		PhoneBook::SearchContact(void)
@@ -70,39 +74,53 @@ void		PhoneBook::SearchContact(void)
 
 	i = 0;
 	found = 0;
-	info = PhoneBook::GetInfo("Search");
-	std::cout << "|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|" << std::endl;
-	std::cout << "|  Index  | FirstName | LastName | Nickname |" << std::endl;
-	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "phonebook> Searching for contact:" << std::endl;
+	info = Utils::GetInfo("Search");
+	std::cout << "           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|" << std::endl;
+	std::cout << "           |   Index  | FirstName| LastName | Nickname |" << std::endl;
+	std::cout << "           |-------------------------------------------|" << std::endl;
 	while (i != 8)
 	{
-		if (PhoneBook::contact[i].GetFirstName() == info
-			|| PhoneBook::contact[i].GetLastName() == info
-			|| PhoneBook::contact[i].GetFullName() == info
-			|| PhoneBook::contact[i].GetNickname() == info)
+		if (Utils::AreIdentical(PhoneBook::contact[i].GetFirstName(), info)
+		    || Utils::AreIdentical(PhoneBook::contact[i].GetLastName(), info)
+		    || Utils::AreIdentical(PhoneBook::contact[i].GetFullName(), info)
+		    || Utils::AreIdentical(PhoneBook::contact[i].GetNickname(), info))
 		{
-			PhoneBook::PrintInfo(i);
+			Utils::PrintInfo(i);
 			found++;
 		}
 		i++;
 	}
 	if (found == 0)
 	{
-		std::cout << "|                 No Match                  |" << std::endl;
-		std::cout << "|___________________________________________|" << std::endl;
+		std::cout << "           |                 No Match                  |" << std::endl;
+		std::cout << "           |___________________________________________|" << std::endl;
+		return ;
 	}
-
-
+	else
+	{
+		std::cout << "           |___________________________________________|" << std::endl;
+		std::cout << "           Select contact: ";
+		std::getline(std::cin, info);
+		if (info.length() == 1 && info[0] >= '0' && info[0] <= '7')
+			PhoneBook::PrintContact(info[0] - '0');
+		else
+			std::cout << "phonebook> Error: Invalid index" << std::endl;
+	}
 }
 
-std::string PhoneBook::GetInfo(std::string info)
+void		PhoneBook::PrintContact(int index)
 {
-	std::string		str;
-
-	while (str.empty())
+	if (index < 0 || index > 7 || contact[index].GetFirstName() == "")
 	{
-		std::cout << "phonebook> " << info << " : ";
-		std::getline(std::cin, str);
+		std::cout << "phonebook> Error: Invalid index !" << std::endl;
+		return ;
 	}
-	return (str);
+
+	std::cout << "phonebook> Printing contact:" << std::endl;
+	std::cout << "           First name: " << contact[index].GetFirstName() << std::endl;
+	std::cout << "           Last name: " << contact[index].GetLastName() << std::endl;
+	std::cout << "           Nickname: " << contact[index].GetNickname() << std::endl;
+	std::cout << "           Phone number: " << contact[index].GetPhoneNumber() << std::endl;
+	std::cout << "           Darkest secret: " << contact[index].GetDarkestSecret() << std::endl;
 }

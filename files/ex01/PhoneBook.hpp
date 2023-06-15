@@ -15,6 +15,7 @@
 
 # include "Main.hpp"
 # include "Contact.hpp"
+# include "Utils.hpp"
 
 class PhoneBook
 {
@@ -28,12 +29,7 @@ class PhoneBook
 
 			void 		AddContact(void);
 			void 		SearchContact(void);
-			void 		PrintContact(void);
-
-			void PrintInfo(int info);
-
-			std::string	GetContact(std::string info);
-			std::string GetInfo(std::string info);
+			void 		PrintContact(int index);
 };
 
 
