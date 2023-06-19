@@ -1,7 +1,7 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile0                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: acrespy <acrespy@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -19,7 +19,7 @@ OBJS 		:= ${SRCS:%.cpp=${OBJ_DIR}/%.o}
 
 CC          := c++
 CFLAGS      := -Wall -Wextra -Werror -g
-CPPFLAGS	:= -std=c++98
+CPPFLAGS	:= -std=c++98 -pedantic
 
 RM          := rm -rf
 MAKEFLAGS   += --no-print-directory
@@ -32,14 +32,14 @@ ${NAME}: ${OBJS}
 	${info EXECUTABLE CREATED: ${NAME}}
 
 
-${OBJ_DIR}/%.o : ${SRCS} %.cpp
+${OBJ_DIR}/%.o : %.cpp
 	${DIR_DUP}
-	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
+	${CC} ${CFLAGS} ${CPPFLAGS} -c $< -o $@
 	${info OBJECT CREATED: $@}
 
 clean:
 	${RM} ${OBJS} ${OBJ_DIR}
-	${info REMOVED OBJECTS: ${OBJS}}
+	${info REMOVED OBJECTS: ${OBJS} ${OBJ_DIR}}
 
 fclean: clean
 	${RM} ${NAME}
