@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Main.hpp"
-#include "PhoneBook.hpp"
+#include "Main.h"
 
 int main(void)
 {
@@ -26,6 +25,8 @@ int main(void)
 			phonebook.AddContact();
 		else if (command == "SEARCH")
 			phonebook.SearchContact();
+		else if (command == "EXIT")
+			break ;
 		if (std::cin.eof())
 		{
 			std::cout << std::endl;

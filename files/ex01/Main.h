@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Main.hpp                                           :+:      :+:    :+:   */
+/*   Main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrespy <acrespy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_HPP
-# define MAIN_HPP
+#ifndef MAIN_H
+# define MAIN_H
 
 # include <iostream>
 # include <string>
 # include <iomanip>
 # include <cctype>
+
+# include "Contact.hpp"
+# include "PhoneBook.hpp"
+# include "Utils.hpp"
 
 #endif

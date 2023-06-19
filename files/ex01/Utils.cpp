@@ -10,7 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Utils.hpp"
+#include "Main.h"
+
+int         AreIdentical(const std::string str1, const std::string str2)
+{
+	if (str1.length() != str2.length()) {
+		return (0);
+	}
+	for (size_t i = 0; i < str1.length(); ++i) {
+		if (std::tolower(str1[i]) != std::tolower(str2[i])) {
+			return (0);
+		}
+	}
+	return (1);
+}
 
 std::string GetInfo(std::string info)
 {
@@ -24,25 +37,12 @@ std::string GetInfo(std::string info)
 	return (str);
 }
 
-std::string TruncateString(const std::string& str, int maxLength)
+std::string TruncateString(const std::string str, unsigned long maxLength)
 {
     if (str.length() <= maxLength)
         return str;
     else
         return str.substr(0, maxLength - 1) + ".";
-}
-
-int         AreIdentical(const std::string str1, const std::string str2)
-{
-    if (str1.length() != str2.length()) {
-        return (0);
-    }
-    for (size_t i = 0; i < str1.length(); ++i) {
-        if (std::tolower(str1[i]) != std::tolower(str2[i])) {
-            return (0);
-        }
-    }
-    return (1);
 }
 
 std::string		XLgoin(std::string FirstName, std::string LastName)

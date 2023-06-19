@@ -13,16 +13,9 @@
 #ifndef UTILS_HPP
 # define UTILS_HPP
 
-# include "Main.hpp"
-
-class Utils
-{
-	public:
-		static std::string GetInfo(std::string info);
-		static void        PrintInfo(int info);
-		static std::string TruncateString(const std::string& str, int maxLength);
-		static int         AreIdentical(const std::string str1, const std::string str2);
-		static std::string XLgoin(std::string FirstName, std::string LastName);
-};
+int         AreIdentical(std::string str1, std::string str2);
+std::string GetInfo(std::string info);
+std::string TruncateString(std::string str, unsigned long maxLength);
+std::string XLgoin(std::string FirstName, std::string LastName);
 
 #endif

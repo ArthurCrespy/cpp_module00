@@ -13,15 +13,14 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include "Main.hpp"
-# include "Contact.hpp"
-# include "Utils.hpp"
-
 class PhoneBook
 {
 	private:
 			Contact		contact[8];
 			int			index;
+
+			void        PrintInfo(int info);
+			void        AddInfo(int index);
 
 	public:
 			PhoneBook();
@@ -30,7 +29,7 @@ class PhoneBook
 			void 		AddContact(void);
 			void 		SearchContact(void);
 			void 		PrintContact(int index);
-};
 
+};
 
 #endif

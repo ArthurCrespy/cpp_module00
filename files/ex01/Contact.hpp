@@ -13,9 +13,6 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include "Main.hpp"
-# include "Utils.hpp"
-
 class Contact
 {
 	private:
@@ -35,11 +32,12 @@ class Contact
 			std::string		GetNickname();
 			std::string		GetPhoneNumber();
 			std::string		GetDarkestSecret();
-			void			SetFirstName(std::string FirstName);
-			void			SetLastName(std::string LastName);
-			void			SetNickname(std::string Nickname);
-			void			SetPhoneNumber(std::string PhoneNumber);
-			void			SetDarkestSecret(std::string DarkestSecret);
+
+			void			SetFirstName(std::string FName);
+			void			SetLastName(std::string LName);
+			void			SetNickname(std::string NName);
+			void			SetPhoneNumber(std::string PNumber);
+			void			SetDarkestSecret(std::string DSecret);
 };
 
 #endif
