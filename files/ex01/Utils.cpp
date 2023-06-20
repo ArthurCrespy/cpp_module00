@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Main.h"
+#include "main.h"
 
 int         AreIdentical(const std::string str1, const std::string str2)
 {
