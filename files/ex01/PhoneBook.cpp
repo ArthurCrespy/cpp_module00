@@ -12,18 +12,18 @@
 
 #include "main.h"
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook()
 {
-	this->index = 0;
+	this->_index = 0;
 }
 
-PhoneBook::~PhoneBook(void) {}
+PhoneBook::~PhoneBook() {}
 
 void		PhoneBook::AddContact()
 {
 	std::string		str;
 
-	if (index == 8)
+	if (_index == 8)
 	{
 		std::cout << "phonebook> Waring: phonebook is full !" << std::endl;
 		std::cout << "phonebook> Overwrite: " << contact[0].GetFullName() << " ? [Y/N] ";
@@ -32,15 +32,15 @@ void		PhoneBook::AddContact()
 		{
 			for (int i = 0; i < 7; i++)
                 contact[i] = contact[i + 1];
-			index--;
-			AddInfo(index);
+			_index--;
+			AddInfo(_index);
 		}
 		else
 			return ;
 	}
 	else
-		AddInfo(index);
-	index++;
+		AddInfo(_index);
+	_index++;
 }
 
 void        PhoneBook::AddInfo(int index)
@@ -61,7 +61,7 @@ void        PhoneBook::AddInfo(int index)
 
 }
 
-void		PhoneBook::SearchContact(void)
+void		PhoneBook::SearchContact()
 {
 	int				i;
 	int				found;

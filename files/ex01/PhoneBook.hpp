@@ -17,7 +17,7 @@ class PhoneBook
 {
 	private:
 			Contact		contact[8];
-			int			index;
+			int			_index;
 
 			void        PrintInfo(int info);
 			void        AddInfo(int index);
@@ -26,8 +26,8 @@ class PhoneBook
 			PhoneBook();
 			~PhoneBook();
 
-			void 		AddContact(void);
-			void 		SearchContact(void);
+			void 		AddContact();
+			void 		SearchContact();
 			void 		PrintContact(int index);
 
 };
