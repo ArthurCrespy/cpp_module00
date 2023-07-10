@@ -14,7 +14,7 @@ NAME        := phonebook
 
 SRCS		:= \
 			Contact.cpp \
-			Main.cpp \
+			main.cpp \
 			PhoneBook.cpp \
 			Utils.cpp \
 
