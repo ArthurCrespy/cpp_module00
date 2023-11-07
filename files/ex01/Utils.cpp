@@ -12,22 +12,20 @@
 
 #include "main.h"
 
-int         AreIdentical(const std::string str1, const std::string str2)
+int AreIdentical(const std::string str1, const std::string str2)
 {
-	if (str1.length() != str2.length()) {
+	if (str1.length() != str2.length())
 		return (0);
-	}
 	for (size_t i = 0; i < str1.length(); ++i) {
-		if (std::tolower(str1[i]) != std::tolower(str2[i])) {
+		if (std::tolower(str1[i]) != std::tolower(str2[i]))
 			return (0);
-		}
 	}
 	return (1);
 }
 
 std::string GetInfo(std::string info)
 {
-	std::string		str;
+	std::string str;
 
 	while (str.empty())
 	{
@@ -40,12 +38,12 @@ std::string GetInfo(std::string info)
 std::string TruncateString(const std::string str, unsigned long maxLength)
 {
     if (str.length() <= maxLength)
-        return str;
+        return (str);
     else
-        return str.substr(0, maxLength - 1) + ".";
+        return (str.substr(0, maxLength - 1) + ".");
 }
 
-std::string		XLgoin(std::string FirstName, std::string LastName)
+std::string	XLgoin(std::string FirstName, std::string LastName)
 {
 	int 		i;
 	int 		j;

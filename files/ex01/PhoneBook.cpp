@@ -19,9 +19,9 @@ PhoneBook::PhoneBook()
 
 PhoneBook::~PhoneBook() {}
 
-void		PhoneBook::AddContact()
+void PhoneBook::AddContact()
 {
-	std::string		str;
+	std::string str;
 
 	if (_index == 8)
 	{
@@ -43,9 +43,9 @@ void		PhoneBook::AddContact()
 	_index++;
 }
 
-void        PhoneBook::AddInfo(int index)
+void PhoneBook::AddInfo(int index)
 {
-	std::string		str;
+	std::string str;
 
 	std::cout << "phonebook> Adding new contact:" << std::endl;
 	contact[index].SetFirstName(GetInfo("First name"));
@@ -61,7 +61,7 @@ void        PhoneBook::AddInfo(int index)
 
 }
 
-void		PhoneBook::SearchContact()
+void PhoneBook::SearchContact()
 {
 	int				i;
 	int				found;
@@ -104,11 +104,36 @@ void		PhoneBook::SearchContact()
 	}
 }
 
-void		PhoneBook::PrintContact(int index)
+void PhoneBook::DisplayContact()
+{
+	int         i;
+	std::string index;
+
+	i = 0;
+	std::cout << "phonebook> Displaying all contacts:" << std::endl;
+	std::cout << "           |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|" << std::endl;
+	std::cout << "           |   Index  | FirstName| LastName | Nickname |" << std::endl;
+	std::cout << "           |-------------------------------------------|" << std::endl;
+	while (i != 8)
+	{
+		if (contact[i].GetFirstName() != "")
+			PrintInfo(i);
+		i++;
+	}
+	std::cout << "           |___________________________________________|" << std::endl;
+	std::cout << "           Select contact: ";
+	std::getline(std::cin, index);
+	if (index.length() == 1 && index[0] >= '0' && index[0] <= '7')
+		PhoneBook::PrintContact(index[0] - '0');
+	else
+		std::cout << "phonebook> Error: Invalid index" << std::endl;
+}
+
+void PhoneBook::PrintContact(int index)
 {
 	if (index < 0 || index > 7 || contact[index].GetFirstName() == "")
 	{
-		std::cout << "phonebook> Error: Invalid index !" << std::endl;
+		std::cout << "phonebook> Error: Invalid index" << std::endl;
 		return ;
 	}
 
@@ -120,7 +145,7 @@ void		PhoneBook::PrintContact(int index)
 	std::cout << "           Darkest secret: " << contact[index].GetDarkestSecret() << std::endl;
 }
 
-void        PhoneBook::PrintInfo(int index)
+void PhoneBook::PrintInfo(int index)
 {
     std::cout << "           |" << std::setw(10) << index << "|";
     std::cout << std::setw(10) << std::right << TruncateString(contact[index].GetFirstName(), 9) << "|";

@@ -24,7 +24,10 @@ int main(void)
 		if (command == "ADD")
 			phonebook.AddContact();
 		else if (command == "SEARCH")
-			phonebook.SearchContact();
+		{
+//			phonebook.SearchContact();
+			phonebook.DisplayContact();
+		}
 		else if (command == "EXIT")
 			break ;
 		if (std::cin.eof())

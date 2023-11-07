@@ -19,8 +19,9 @@ class PhoneBook
 			Contact		contact[8];
 			int			_index;
 
-			void        PrintInfo(int info);
-			void        AddInfo(int index);
+			void		AddInfo(int index);
+			void		PrintInfo(int info);
+			void		PrintContact(int index);
 
 	public:
 			PhoneBook();
@@ -28,7 +29,7 @@ class PhoneBook
 
 			void 		AddContact();
 			void 		SearchContact();
-			void 		PrintContact(int index);
+			void 		DisplayContact();
 
 };
 
